@@ -1,16 +1,59 @@
-# Python
+# === Python artifacts ===
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.eggs/
+build/
+dist/
+*.manifest
+*.spec
 
-# Jupyter
-.ipynb_checkpoints/
-
-# Environments
-.venv/
-env/
+# === Environments ===
 venv/
+.env/
+.env.local
+.venv/
+*.env
 
-# Data
-data/*.csv
-data/*.parquet
+# === Jupyter ===
+.ipynb_checkpoints/
+.notebooks_cache/
+.notebook_tmp/
+
+# === OS / Editor cruft ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# === Data / Cache ===
+*.csv
+*.parquet
+*.json
+*.h5
+*.zip
+*.pkl
+*.npy
+*.npz
+.cache/
+dataset_cache/
+data/
+logs/
+assets/
+
+# === Visualization / Generated media ===
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.pdf
+
+# === Misc ===
+__init__.cpython*
+*.log

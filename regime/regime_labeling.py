@@ -4,6 +4,7 @@ regime_labeling.py
 Functions for computing volatility and labeling market regimes.
 """
 
+from __future__ import annotations
 import pandas as pd
 import numpy as np
 from typing import Literal
@@ -22,12 +23,15 @@ def compute_returns(prices: pd.Series, log: bool = True) -> pd.Series:
     Returns
     -------
     pd.Series
-        Series of returns.
+        Series of daily returns (log or pct), aligned to input index.
     """
+    s = pd.Series(prices).astype(float)
     if log:
-        return np.log(prices / prices.shift(1)).dropna()
+        r = np.log(s / s.shift(1))
     else:
-        return prices.pct_change().dropna()
+        r = s.pct_change()
+    return r.dropna()
+
 
 def compute_volatility(returns: pd.Series, window: int = 20) -> pd.Series:
     """
@@ -36,7 +40,7 @@ def compute_volatility(returns: pd.Series, window: int = 20) -> pd.Series:
     Parameters
     ----------
     returns : pd.Series
-        Return series.
+        Return series (daily).
     window : int
         Rolling window size.
 
@@ -45,7 +49,9 @@ def compute_volatility(returns: pd.Series, window: int = 20) -> pd.Series:
     pd.Series
         Rolling volatility values.
     """
-    return returns.rolling(window).std()
+    r = pd.Series(returns)
+    return r.rolling(window).std()
+
 
 def label_regimes(vol: pd.Series,
                   method: Literal["median", "quantile"] = "median",
@@ -65,20 +71,28 @@ def label_regimes(vol: pd.Series,
     Returns
     -------
     pd.Series
-        Regime labels.
+        Regime labels as strings with the same index as `vol`.
     """
+    v = pd.Series(vol)
     if method == "median":
-        threshold = vol.median()
-        return np.where(vol < threshold, "Low Vol", "High Vol")
-
+        threshold = v.median()
+        labels = np.where(v < threshold, "Low Vol", "High Vol")
     elif method == "quantile":
-        low_th = vol.quantile(q)
-        high_th = vol.quantile(1 - q)
-        return np.select(
-            [vol <= low_th, vol >= high_th],
+        low_th = v.quantile(q)
+        high_th = v.quantile(1 - q)
+        labels = np.select(
+            [v <= low_th, v >= high_th],
             ["Low Vol", "High Vol"],
             default="Mid Vol"
         )
-
     else:
         raise ValueError("Invalid method. Use 'median' or 'quantile'.")
+
+    out = pd.Series(labels, index=v.index, name="regime").astype("string")
+    # Optional, consistent order for plotting
+    order = pd.CategoricalDtype(categories=["Low Vol", "Mid Vol", "High Vol"], ordered=True)
+    try:
+        out = out.astype(order)
+    except Exception:
+        pass
+    return out

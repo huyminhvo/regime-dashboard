@@ -1,0 +1,10 @@
+﻿# Core dependencies
+pandas>=2.0
+numpy>=1.25
+matplotlib>=3.7
+yfinance>=0.2
+
+# Optional (for notebooks & visual exploration)
+jupyterlab>=4.0
+seaborn>=0.13
+scikit-learn>=1.5
