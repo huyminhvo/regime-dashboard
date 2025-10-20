@@ -6,7 +6,7 @@ This project identifies distinct volatility regimes (Low / Mid / High), computes
 
 Built for quick exploratory research, strategy testing, and clean presentation, showcasing quantitative analysis and Python engineering skills.
 
----
+
 
 ## Features
 
@@ -30,7 +30,7 @@ Built for quick exploratory research, strategy testing, and clean presentation, 
   - `strategies.py` – simple backtests  
   - `visualization.py` – plotting helpers  
 
----
+
 
 ## Example Workflow
 
