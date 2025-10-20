@@ -1,14 +1,14 @@
-# 📈 Regime Dashboard
+# Regime Dashboard
 
 A lightweight Python toolkit for **volatility-based regime analysis** and **market diagnostics**.
 
 This project identifies distinct volatility regimes (Low / Mid / High), computes performance metrics for each, and visualizes how different market conditions affect returns.
 
-It’s built for quick exploratory research, strategy testing, and clean presentation, showcasing quantitative analysis and Python engineering skills.
+Built for quick exploratory research, strategy testing, and clean presentation, showcasing quantitative analysis and Python engineering skills.
 
 ---
 
-## 🚀 Features
+## Features
 
 - **Automated Regime Labeling**  
   Quantile or median-based volatility segmentation of any asset.
@@ -32,7 +32,7 @@ It’s built for quick exploratory research, strategy testing, and clean present
 
 ---
 
-## 🧠 Example Workflow
+## Example Workflow
 
 ```python
 import yfinance as yf
@@ -60,7 +60,7 @@ equity_df, stats_df = an.compare_to_benchmark()
 print(stats_df.round(3))
 ```
 
-## 📊 Example Output
+## Example Output
 
 Summary Metrics (sample)
 
@@ -70,37 +70,16 @@ Summary Metrics (sample)
 | Mid Vol  | 844  | 0.089  | 0.78   | 1.12    | -0.12        | 0.52     |
 | High Vol | 791  | -0.031 | -0.45  | -0.53   | -0.28        | 0.44     |
 
-## 🧩 Project Structure
 
-```
-regime-dashboard/
-│
-├── regime/
-│   ├── __init__.py
-│   ├── regime_analyzer.py
-│   ├── regime_labeling.py
-│   ├── metrics.py
-│   ├── strategies.py
-│   └── visualization.py
-│
-├── examples/
-│   └── run_tsla_demo.py
-│
-├── notebooks/
-│   └── Regime_Analysis_Demo.ipynb
-│
-├── requirements.txt
-└── README.md
-```
 
-## ⚙️ Installation
+## Installation
 ```
 git clone https://github.com/<yourusername>/regime-dashboard.git
 cd regime-dashboard
 pip install -r requirements.txt
 ```
 
-## 🧪 Quick Demo
+## Quick Demo
 ```
 python examples/run_tsla_demo.py
 ```
@@ -111,7 +90,7 @@ This will:
 2. Compute volatility regimes
 3. Display regime plots and performance tables
 
-## 🧾 Requirements
+## Requirements
 ```
 pandas>=2.0
 numpy>=1.25
@@ -124,10 +103,10 @@ jupyterlab>=4.0
 scikit-learn>=1.5
 ```
 
-## 📚 Notes
+## Notes
 * All returns are computed as daily log returns by default unless otherwise noted.
 * Annualization uses 252 trading days.
 * Designed for exploratory financial analysis, not production trading.
 
-## 🪪 License
+## License
 MIT License © 2025 Huy Vo
